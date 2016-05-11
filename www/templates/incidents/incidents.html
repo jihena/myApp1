@@ -1,0 +1,16 @@
+<ion-view view-title="Incidents" id="incidents">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-thumbnail-left"
+                      ui-sref="app.incidents-detail({incidentTitle: '{{incident.title}}' })"
+                      ng-repeat="incident in incidents">
+                <img style="background-image:url({{incident.poster}})"/>
+                <div class="info">
+                    <h2>{{incident.title}}</h2>
+                    <p>{{incident.director}} - {{incident.year}}</p>
+                </div>
+                <p class="rating">Rating: {{incident.imdbRating}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
