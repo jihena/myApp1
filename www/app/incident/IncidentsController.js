@@ -1,6 +1,4 @@
-angular.module('IncidentsModule')
-
-.controller('IncidentsController', function($scope, Incident, incidents) {
+appContext.controller('IncidentsController', function($scope, Incident, incidents) {
 
     var initView = function() {
 

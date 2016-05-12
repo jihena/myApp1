@@ -52,6 +52,14 @@
     margin-bottom: 6px;
 }
 
+/* Menu*/
+.barMenu {
+  border-color: transparent;
+  background-color: #FB4B17;
+  color: #fff;
+}
+
+
 /* Ionic Material's CSS :
 ==================================
 ==================================*/
@@ -61,7 +69,9 @@
 h1 {
     color: #fff;
     text-shadow: 0 1px 0px #000;
-    font-size: 42px;
+    font-size: 40px;
+    margin-left: 20px;
+    margin-bottom: 50px;
 }
 
 
@@ -123,7 +133,7 @@ p {
 ==================================*/
 .app-icon {
     background-color: #fff;
-    background: url('../img/crown.jpg') center;
+    background: url('../img/ET.png') center;
     background-size: cover;
     border-radius: 50%;
     height: 125px;

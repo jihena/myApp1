@@ -1,6 +1,5 @@
-angular.module('IncidentsModule')
 
-.controller('IncidentDetailsController', function($scope, IncidentsService, currentIncidentIndex) {
+appContext.controller('IncidentDetailsController', function($scope, IncidentsService, currentIncidentIndex) {
 
     $scope.data = {};
     $scope.data.incidents = IncidentsService.incidents;
