@@ -1,0 +1,32 @@
+<ion-view view-title="Login" align-title="left">
+    <ion-content style="background: url(img/1.jpg) center; background-size: cover;">
+
+        <div class="loginTitle">
+            <div class="app-icon"></div>
+            <h1>EmergencyTUN</h1>
+        </div>
+
+        <form>
+
+          <div class="group">
+            <input type="text" ng-model="data.username" required>
+            <label>Username</label>
+          </div>
+
+          <div class="group">
+            <input type="password" ng-model="data.password" required>
+            <label>Email</label>
+          </div>
+
+          <div class="padding">
+              <button ui-sref="app.about" type="submit" class="button button-full button-login">Login</button>
+          </div>
+          <div class="button-bar social-login">
+              <button class="button button-small button-border icon-left ion-social-google button-assertive">Google+</button>
+              <button class="button button-small button-border icon-left ion-social-twitter button-calm">Twitter</button>
+              <button class="button button-small button-border icon-left ion-social-facebook button-positive">Facebook</button>
+          </div>
+
+        </form>
+    </ion-content>
+</ion-view>

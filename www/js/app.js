@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'IncidentsModule'])
+var appContext = angular.module('starter', ['ionic','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,39 +25,31 @@ angular.module('starter', ['ionic', 'IncidentsModule'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+    .state('login', {
+      url: '/login',
+      templateUrl: 'app/login/login.html',
+      controller: 'LoginController'
+    })
+    .state('startup', {
+      url: '/startup',
+      templateUrl: 'app/startup/startup.html',
+      controller: 'StartupController'
+    })
+
     .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu/menu.html'
+      templateUrl: 'app/menu/menu.html'
     })
-
-    .state('app.about', {
-      url: '/about',
-      views: {
-        'content': {
-          templateUrl: 'templates/main/about.html'
-        }
-      }
-    })
-
     .state('app.new', {
       url: '/new',
       views: {
         'content': {
-          templateUrl: 'templates/new/new.html'
-        }
-      }
-    })
-
-    .state('app.login', {
-      url: '/login',
-      views: {
-        'content': {
-          templateUrl: 'templates/login/login.html'
+          templateUrl: 'app/incident/template/new.html'
         }
       }
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/startup');
 });
