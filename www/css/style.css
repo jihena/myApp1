@@ -1,57 +1,3 @@
-#incidents .rating{
-    position: absolute;
-    bottom: 4px;
-}
-
-#incidents .info{
-    height: 65px;
-    overflow: hidden;
-}
-
-#incidents h2{
-    white-space: normal;
-}
-
-#incidents p{
-    white-space: normal;
-}
-
-#incidents img{
-    background-size: cover;
-    background-position: center;
-}
-
-#incidentDetails .infoRight{
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-right: 16px;
-    padding-top: 16px;
-    text-align: right;
-    width: 100px;
-    font-style: italic;
-}
-
-#incidentDetails .infoRight p:first-of-type{
-    font-size: 16px;
-    color: black;
-    font-style: normal;
-    margin-bottom: 25px;
-}
-
-#incidentDetails .infoLeft{
-    width: calc(100% - 100px);
-}
-
-#incidentDetails .infoLeft p, #incidentDetails .infoLeft h2{
-  white-space: normal;
-}
-
-#incidentDetails .infoLeft p:nth-of-type(1){
-    font-style: italic;
-    margin-bottom: 6px;
-}
-
 /* Menu*/
 .barMenu {
   border-color: transparent;
@@ -59,6 +5,16 @@
   color: #fff;
 }
 
+/* basic stylings ------------------------------------------ */
+h2 		 {
+  text-align:center;
+  margin-bottom:50px;
+}
+h2 small {
+  font-weight:normal;
+  color:#888;
+  display:block;
+}
 
 /* Ionic Material's CSS :
 ==================================
@@ -126,22 +82,4 @@ p {
 
 .menu-open .ion-navicon:before {
     content: "\f2ca";
-}
-
-
-/* Login
-==================================*/
-.app-icon {
-    background-color: #fff;
-    background: url('../img/ET.png') center;
-    background-size: cover;
-    border-radius: 50%;
-    height: 125px;
-    margin: 0 auto;
-    width: 100px;
-}
-
-.social-login {
-    position: fixed;
-    bottom: 0;
 }

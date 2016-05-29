@@ -1,0 +1,3 @@
+appContext.controller('IncidentListController', function() {
+
+});

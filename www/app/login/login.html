@@ -9,17 +9,17 @@
         <form>
 
           <div class="group">
-            <input type="text" ng-model="data.username" required>
-            <label>Username</label>
-          </div>
-
-          <div class="group">
-            <input type="password" ng-model="data.password" required>
+            <input class="login-email-input" type="text" ng-model="user.email" required>
             <label>Email</label>
           </div>
 
+          <div class="group">
+            <input class="login-password-input" type="password" ng-model="user.password" required>
+            <label>Password</label>
+          </div>
+
           <div class="padding">
-              <button ui-sref="app.about" type="submit" class="button button-full button-login">Login</button>
+              <button ng-click="signin(user)" type="submit" class="button button-full button-login">Login</button>
           </div>
           <div class="button-bar social-login">
               <button class="button button-small button-border icon-left ion-social-google button-assertive">Google+</button>

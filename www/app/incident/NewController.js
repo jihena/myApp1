@@ -1,3 +1,0 @@
-appContext.controller('NewController', function() {
-
-})

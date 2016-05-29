@@ -5,16 +5,24 @@
     background-color: #FB4B17;
     color: #fff;
 }
-/* basic stylings ------------------------------------------ */
-h2 		 {
-  text-align:center;
-  margin-bottom:50px;
+
+/* Login
+==================================*/
+.app-icon {
+    background-color: #fff;
+    background: url('../img/ET.png') center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: 0 auto;
+    width: 100px;
 }
-h2 small {
-  font-weight:normal;
-  color:#888;
-  display:block;
+
+.social-login {
+    position: fixed;
+    bottom: 0;
 }
+
 
 /* form starting stylings ------------------------------- */
 .group 			  {
@@ -22,11 +30,13 @@ h2 small {
   margin-bottom:20px;
   margin-left:20px
 }
-input 				{
+.login-password-input , .login-email-input	{
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
   width:280px;
+  color : #FFF !important;
+  font-weight: bold;
   border:none;
   border-bottom:1px solid #757575;
   background-color: rgba(0, 0, 0, 0.23);
