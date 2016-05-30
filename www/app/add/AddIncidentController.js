@@ -1,6 +1,6 @@
 appContext.controller('AddIncidentController', function($scope, $state, $cordovaCamera, $cordovaFile,
                                                         $cordovaGeolocation,AddIncidentFactory,
-                                                        $ionicPlatform, ionicToast, CameraFactory) {
+                                                        $ionicPlatform, ionicToast) {
 
     //Before we start coding, it is very important to note that
     //database activity can only be done when the onDeviceReady() method has fired.
@@ -57,27 +57,30 @@ appContext.controller('AddIncidentController', function($scope, $state, $cordova
           /**
            * Prendre une photo et récupérer l'emplacement du fichier de l'image :
            */
+          $scope.pictureUrl = 'http://placehold.it/250x250';
           $scope.getPhoto = function() {
 
               var options = {
                   quality: 50,
-                  destinationType: Camera.DestinationType.FILE_URI,
+                  destinationType: Camera.DestinationType.DATA_URL,
                   sourceType: Camera.PictureSourceType.CAMERA,
                   encodingType: Camera.EncodingType.JPEG,
                   targetWidth: 500,
                   targetHeight: 500,
                   correctOrientation: true,
+                  saveToPhotoAlbum: true,
                   popoverOptions: CameraPopoverOptions
 
               };
-              CameraFactory.takePhoto(options).then(function(imageURI) {
-                  console.warn(imageURI);
-                  var image = document.getElementById('myImage');
-                  image.src = imageURI;
+              $cordovaCamera.getPicture(options).then(function(imageData) {
+                console.log('camera data :' + imageData);
 
-              }, function(err) {
-                  console.error(err);
-              });
+                    $scope.pictureUrl = "data:image/jpeg;base64," + imageData;
+                  }, function(err) {
+                    // error
+                    console.log('camera ERROR :' + imageData);
+                  });
+
           };
 
 

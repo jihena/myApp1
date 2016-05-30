@@ -85,16 +85,6 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
       }
     })
 
-    .state('app.add_details', {
-      url: '/add_details',
-      views: {
-        'content': {
-          templateUrl: 'app/add/template/add_details.html',
-          controller: 'AddController'
-        }
-      }
-    })
-
     .state('app.profile', {
       url: '/profile',
       views: {
@@ -105,5 +95,5 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/startup');
+  $urlRouterProvider.otherwise('app/incident-list');
 });

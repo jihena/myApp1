@@ -1,7 +1,7 @@
 <ion-view view-title="New incident : Photo" class="has-header padding">
     <ion-content ng-controller="AddIncidentController">
 
-      <form>
+      <a ui-sref="app.incident-map">Next</a>
 
         <div class="group">
           <input type="text" ng-model="incident.title" required>
@@ -13,11 +13,15 @@
           <label>Description</label>
         </div>
 
+        <div class="card">
+            <div class="item">
+                <img ng-src="{{pictureUrl}}">
+            </div>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-calm"
+            ng-click="getPhoto()">Take picture</button>
+        </div>
 
-      </form>
-        <a ui-sref="app.incident-map">Next</a>
-        <img id="profil" ng-src="{{photoProfil}}" src="http://placehold.it/300x300">
-        <a class="button" ng-click="getPhoto()">Take Picture</a>
-      
     </ion-content>
 </ion-view>
