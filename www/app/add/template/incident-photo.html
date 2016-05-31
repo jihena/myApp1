@@ -1,23 +1,35 @@
 <ion-view view-title="New incident : Photo" class="has-header padding">
     <ion-content ng-controller="AddIncidentController">
 
-      <form>
 
-        <div class="group">
-          <input type="text" ng-model="incident.title" required>
-          <label>Title</label>
+      <div class="padding">
+          <button class="button button-block button-dark"
+                  ng-click="savePhoto(incident)">NEXT</button>
+      </div>
+
+      <div class="group">
+        <input type="text" ng-model="incident.title" required>
+        <label>Title</label>
+      </div>
+
+      <div class="group">
+        <input type="text" ng-model="incident.description" required>
+        <label>Description</label>
+      </div>
+        <div class="card">
+            <div class="item" style="text-align: center">
+                <img ng-src="{{pictureUrl}}">
+            <div class="padding">
+                <button class="button button-block button-calm"
+                ng-click="getPhoto()">Take picture</button>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-assertive"
+                ng-click="selectPhoto()">Select picture</button>
+            </div>
+          </div>
         </div>
 
-        <div class="group">
-          <input type="text" ng-model="incident.description" required>
-          <label>Description</label>
-        </div>
 
-
-      </form>
-        <a ui-sref="app.incident-map">Next</a>
-        <img id="profil" ng-src="{{photoProfil}}" src="http://placehold.it/300x300">
-        <a class="button" ng-click="getPhoto()">Take Picture</a>
-      
     </ion-content>
 </ion-view>

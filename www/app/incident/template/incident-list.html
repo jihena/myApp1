@@ -1,6 +1,19 @@
 <ion-view view-title="List of incidents">
-    <ion-content>
 
+		<ion-content>
 
-    </ion-content>
+				<ion-list>
+						<ion-item class="item-thumbnail-left"
+											href="#/app/incident/{{incident.id}}"
+											ng-repeat="incident in incidentArray">
+								<img style="background-image:url({{incident.photo}})"/>
+								<div class="info">
+										<h2>Type : {{incident.type}}</h2>
+										<p>{{incident.date}}</p>
+								</div>
+						</ion-item>
+				</ion-list>
+
+		</ion-content>
+
 </ion-view>

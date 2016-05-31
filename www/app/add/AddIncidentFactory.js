@@ -7,7 +7,7 @@ appContext.factory('AddIncidentFactory', function($q, $cordovaSQLite) {
         var deferred=$q.defer();
         var CreateQuery = 'CREATE TABLE IF NOT EXISTS incident (' +
             'id INTEGER PRIMARY KEY, ' +
-            'type text, title text, description text, photo text, longitude text, latitude text)';
+            'type text, title text, description text, date text, photo text, longitude text, latitude text)';
         $cordovaSQLite.execute(db, CreateQuery).then(
             function(result) {
               console.log(result);
@@ -21,10 +21,10 @@ appContext.factory('AddIncidentFactory', function($q, $cordovaSQLite) {
     /**
      * save the incident credentials into the incident Table
      */
-    var setCredentials = function(db, type, title, description, photo, longitude, latitude) {
+    var setCredentials = function(db, type, title, description, date, photo, longitude, latitude) {
         var deferred=$q.defer();
-        $cordovaSQLite.execute(db, " INSERT INTO incident (id, type, title, description, photo, longitude, latitude) VALUES (?,?,?,?,?,?,?) ",
-                                   [null, type, title, description, photo, longitude, latitude]).then(function(result) {
+        $cordovaSQLite.execute(db, " INSERT INTO incident (id, type, title, description, date, photo, longitude, latitude) VALUES (?,?,?,?,?,?,?,?) ",
+                                   [null, type, title, description, date, photo, longitude, latitude]).then(function(result) {
               console.log('------------'+result);
             deferred.resolve();
 
