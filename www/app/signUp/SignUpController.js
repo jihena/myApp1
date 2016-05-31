@@ -1,0 +1,68 @@
+appContext.controller('SignUpController', function($scope, $state,  $ionicPlatform, SignUpFactory, ionicToast){
+
+    // for opening db:
+    var db = null;
+    $ionicPlatform.ready(function() {
+        /**
+         * create/open DB
+         */
+        if (window.cordova) {// device
+            db = window.sqlitePlugin.openDatabase({name : "emergency" , androidDatabaseImplementation: 2, location: 1});
+        } else {// browser
+            db = window.openDatabase("emergency", '1', 'desc', 1024 * 1024 * 5);
+        }
+    });
+
+    $scope.signUp = function(user) {
+        console.warn(user);
+        if (!user) {
+            ionicToast.show('Veuillez remplir tout les champs', 'top', false, 2500);
+        }else if(!user.firstName)  {
+            ionicToast.show('Veuillez introduire un prenom ', 'top', false, 2500);
+        }else if(!user.lastName)  {
+            ionicToast.show('Veuillez introduire un nom ', 'top', false, 2500);
+        }else if(!user.email || user.email =="undefined" || ! validateEmail(user.email) )  {
+            ionicToast.show('Veuillez introduire un email valide ', 'top', false, 2500);
+        } else if (!user.password || user.password =="undefined") {
+            ionicToast.show('Veuillez introduire un mot de passe', 'top', false, 2500);
+        }else if (user.password.length < 5) {
+          ionicToast.show('Veuillez introduire un mot de passe valide', 'top', false, 2500);
+        }
+        else{
+            SignUpFactory.signUp(user).success(function(data, status, headers, config ){
+                switch (data.response) {
+                         case "already_exist":
+                            ionicToast.show('Ce compte a déjà été utilisé', 'top', false, 2500);
+                             break;
+                         case "NOK":
+                             ionicToast.show('email ou password non valide', 'top', false, 2500);
+                             break;
+                         default:
+                             SignUpFactory.createIdentifiantTable(db).then(function(result){
+                                 console.log('table created: sign up');
+
+                                   SignUpFactory.setCredentials(db,user.firstName, user.lastName,user.email,user.password,data.userID).then(function(result){
+                                       $state.go('app.incident-list');
+                                       console.log("success");
+                                   },function(reason){
+                                       ionicToast.show('Une erreur est survenue 1111111111', 'top', false, 2500);
+                                   });
+
+                             },function(){
+                                 ionicToast.show('Une erreur est survenue 22222222222', 'top', false, 2500);
+                             });
+                             break;
+                     };
+
+            }).error(function(data, status, headers, config ){
+                ionicToast.show('Une erreur est survenue 3333333333333333333', 'top', false, 2500);
+            });
+        };
+    };
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+});

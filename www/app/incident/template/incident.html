@@ -1,0 +1,26 @@
+<ion-view view-title="incident detail">
+
+
+	<ion-content>
+
+              <div class="card">
+                  <ion-item>
+                      <div class="infoLeft">
+                          <h2>{{incident.title}}</h2>
+                          <p>{{incident.type}}</p>
+                          <p>{{incident.date}}</p>
+                      </div>
+                  </ion-item>
+
+                  <ion-item class="item-image">
+                      <img src="{{incident.photo}}" />
+                  </ion-item>
+
+                  <ion-item class="item-body">
+                      {{incident.description}}
+                  </ion-item>
+              </div>
+
+          </ion-content>
+
+</ion-view>

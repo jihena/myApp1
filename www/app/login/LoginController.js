@@ -28,14 +28,14 @@ appContext.controller('LoginController', function($scope, $state,  $ionicPlatfor
                 }else{
                     LoginFactory.createIdentifiantTable(db).then(function(result){
                         console.log('table created');
-                        //LoginFactory.emptyIdentifiantTable(db).then(function() {
-                          LoginFactory.setCredentials(db,user.email,user.password,data).then(function(result){
-                              $state.go('app.incident-list') ;
-                              console.log("success");
-                          },function(reason){
-                              ionicToast.show('Une erreur est survenue 1111111111', 'top', false, 2500);
-                          });
-                        //});
+                        LoginFactory.selectCredentials(db).then(function() {
+                            LoginFactory.setCredentials(db,user.email,user.password,data).then(function(result){
+                                $state.go('app.incident-list') ;
+                                console.log("success");
+                            },function(reason){
+                                ionicToast.show('Une erreur est survenue 1111111111', 'top', false, 2500);
+                            });
+                        });
 
                     },function(){
                         ionicToast.show('Une erreur est survenue 22222222222', 'top', false, 2500);

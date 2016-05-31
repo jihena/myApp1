@@ -31,6 +31,14 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
       templateUrl: 'app/login/login.html',
       controller: 'LoginController'
     })
+
+    .state('signUp', {
+      url: '/signUp',
+      cache: false,
+      templateUrl: 'app/signUp/signUp.html',
+      controller: 'SignUpController'
+    })
+
     .state('startup', {
       url: '/startup',
       cache: false,
@@ -57,6 +65,7 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
 
     .state('app.incident-photo', {
       url: '/incident-photo',
+      cache : false,
       views: {
         'content': {
           templateUrl: 'app/add/template/incident-photo.html',
@@ -80,7 +89,18 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
       views: {
         'content': {
           templateUrl: 'app/incident/template/incident-list.html',
-          controller: 'IncidentController'
+          controller: 'IncidentListController'
+        }
+      }
+    })
+
+    .state('app.incident',{
+      url : '/incident/{id:int}',
+      cache : false,
+      views: {
+        'content': {
+          templateUrl: 'app/incident/template/incident.html',
+          controller : 'IncidentController'
         }
       }
     })
@@ -95,5 +115,5 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/incident-list');
+  $urlRouterProvider.otherwise('startup');
 });
