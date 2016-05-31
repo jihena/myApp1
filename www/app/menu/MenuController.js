@@ -14,8 +14,6 @@ appContext.controller('MenuController', function($scope, $state, $ionicPlatform,
     });
 
 
-
-
     $scope.signout = function() {
       LoginFactory.emptyIdentifiantTable(db).then(function(result){
 

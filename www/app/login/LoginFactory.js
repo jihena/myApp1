@@ -7,8 +7,8 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
         // the request parameters
         var loginRequest = {
             method: 'POST',
-            //url: 'http://192.168.1.101/emergency/web/app.php/auth/create',
-            // url: 'http://127.0.0.1/emergency/web/app_dev.php/auth/create',
+            url: 'http://192.168.1.104/emergency/web/app.php/auth/login',
+            //url: 'http://127.0.0.1/emergency/web/app_dev.php/auth/login',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -52,12 +52,10 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
         var deferred=$q.defer();
         $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, email, password,userId) VALUES (?,?,?,?) ", [1, email, password,userId]).then(function(result) {
             deferred.resolve();
-
         }, function(reason) {
            deferred.reject();
         });
         return deferred.promise;
-
     }
 
     /**
@@ -72,7 +70,6 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
             deferred.reject(reason);
         });
          return deferred.promise;
-
     };
 
     /**
@@ -96,27 +93,7 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
         });
         return deferred.promise;
     };
-    /**
-     * GET the user credentials into the USER Table
-     */
-    var selectCredentials = function(db, email) {
-        var deferred=$q.defer();
-        $cordovaSQLite.execute(db, "SELECT name FROM sqlite_master WHERE type='table' AND name='identifiant';").then(function(results) {
-            if (results.rows.length > 0) {
-                $cordovaSQLite.execute(db, "SELECT * FROM identifiant WHERE email='" +email+"'").then(function(res) {
-                    deferred.resolve(res);
-                }, function(error) {
-                    deferred.reject(error);
-                });
-            } else {
-                console.log('table nexiste pas');
-                deferred.resolve(0);
-            }
-        }, function(reason) {
-            deferred.reject(reason);
-        });
-        return deferred.promise;
-    };
+
 
     /**
      * the factory return
