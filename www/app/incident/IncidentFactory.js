@@ -11,13 +11,12 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
 
             deferred.resolve(result);
         },function(reason){
-            console.log("error: " +reason);
+            console.log(reason);
             deferred.reject(reason);
        })
        return deferred.promise;
 
     }
-
 
   	/**
   	* select incident details by id from local db
