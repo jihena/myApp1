@@ -24,5 +24,17 @@ appContext.controller('MenuController', function($scope, $state, $ionicPlatform,
         console.log('deconnexion');
 
     };
+    //Add incident
+    $scope.one = function() {
+        $state.go("app.incident-type");
+    };
+    //iIncident's list
+    $scope.two = function() {
+        $state.go("app.incident-list");
+    };
+    //Profile
+    $scope.three = function() {
+        $state.go("app.profile");
+    };
 
 });

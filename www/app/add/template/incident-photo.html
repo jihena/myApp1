@@ -1,35 +1,43 @@
-<ion-view view-title="New incident : Photo" class="has-header padding">
-    <ion-content ng-controller="AddIncidentController">
+<ion-view>
+    <ion-nav-title>
+        <span style="color:white">Photo</span>
+    </ion-nav-title>
+    <ion-content>
+        <div class="photos padding">
 
+            <label class="item item-input item-floating-label item-icon-left">
+                <span class="input-label">Title</span>
+                <input type="text" placeholder="Title" ng-model="incident.title">
+            </label>
 
-      <div class="padding">
-          <button class="button button-block button-dark"
-                  ng-click="savePhoto(incident)">NEXT</button>
-      </div>
+            <label class="item item-input item-floating-label item-icon-left">
+                <span class="input-label">Description</span>
+                <input type="text" placeholder="Description" ng-model="incident.description">
+            </label>
+            <div >
+                <div class="card">
+                    <div class="item" style="text-align: center">
+                        <img ng-src="{{pictureUrl}}">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <button class="button button-calm"
+                                        ng-click="getPhoto()">Take picture</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button class="button button-assertive"
+                                        ng-click="selectPhoto()">Select picture</button>
+                            </div>
+                        </div>
 
-      <div class="group">
-        <input type="text" ng-model="incident.title" required>
-        <label>Title</label>
-      </div>
-
-      <div class="group">
-        <input type="text" ng-model="incident.description" required>
-        <label>Description</label>
-      </div>
-        <div class="card">
-            <div class="item" style="text-align: center">
-                <img ng-src="{{pictureUrl}}">
-            <div class="padding">
-                <button class="button button-block button-calm"
-                ng-click="getPhoto()">Take picture</button>
+                    </div>
+                </div>
             </div>
-            <div class="padding">
-                <button class="button button-block button-assertive"
-                ng-click="selectPhoto()">Select picture</button>
+            <div>
+                <button class="button button-block button-dark"
+                        ng-click="savePhoto(incident)">NEXT</button>
             </div>
-          </div>
+
         </div>
-
 
     </ion-content>
 </ion-view>

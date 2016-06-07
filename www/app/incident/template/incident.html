@@ -1,26 +1,28 @@
-<ion-view view-title="incident detail">
+<ion-view>
+		<ion-nav-title>
+				<span style="color:white">Incident detail</span>
+		</ion-nav-title>
+		<ion-content>
+				<div class="lists">
+						<div class="card">
+								<ion-item>
+										<div>
+												<h2>{{incident.title}}</h2>
+												<p>{{incident.type}}</p>
+												<p>{{incident.date | date:'dd/MMM/yyyy'}}</p>
+												<p>{{incident.date | date:'HH:mm'}}</p>
+										</div>
+								</ion-item>
 
+								<ion-item class="item-image">
+										<img src="{{incident.photo}}" />
+								</ion-item>
 
-	<ion-content>
+								<ion-item class="item-body">
+										{{incident.description}}
+								</ion-item>
+						</div>
+				</div>
 
-              <div class="card">
-                  <ion-item>
-                      <div class="infoLeft">
-                          <h2>{{incident.title}}</h2>
-                          <p>{{incident.type}}</p>
-                          <p>{{incident.date}}</p>
-                      </div>
-                  </ion-item>
-
-                  <ion-item class="item-image">
-                      <img src="{{incident.photo}}" />
-                  </ion-item>
-
-                  <ion-item class="item-body">
-                      {{incident.description}}
-                  </ion-item>
-              </div>
-
-          </ion-content>
-
+    </ion-content>
 </ion-view>

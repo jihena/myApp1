@@ -27,6 +27,11 @@ appContext.controller('SignUpController', function($scope, $state,  $ionicPlatfo
             ionicToast.show('Veuillez introduire un mot de passe', 'top', false, 2500);
         }else if (user.password.length < 5) {
           ionicToast.show('Veuillez introduire un mot de passe valide', 'top', false, 2500);
+        }else if (window.connection) {
+          if(navigator.connection.type == Connection.NONE) {
+
+            ionicToast.show('There is no internet connection', 'top', false, 2500);
+          }
         }
         else{
             SignUpFactory.signUp(user).success(function(data, status, headers, config ){
@@ -42,7 +47,7 @@ appContext.controller('SignUpController', function($scope, $state,  $ionicPlatfo
                                  console.log('table created: sign up');
 
                                    SignUpFactory.setCredentials(db,user.firstName, user.lastName,user.email,user.password,data.userID).then(function(result){
-                                       $state.go('app.incident-list');
+                                       $state.go('app.profile');
                                        console.log("success");
                                    },function(reason){
                                        ionicToast.show('Une erreur est survenue 1111111111', 'top', false, 2500);

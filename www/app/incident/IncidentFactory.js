@@ -6,9 +6,7 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
     var getLocalIncidentList = function(db){
         var deferred = $q.defer();
         var query="select * from incident ";
-        //console.warn(query);
         $cordovaSQLite.execute(db,query).then(function(result){
-
             deferred.resolve(result);
         },function(reason){
             console.log(reason);
@@ -25,7 +23,6 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
 
           var deferred = $q.defer();
           var query = 'SELECT * FROM incident where id='+id;
-          //console.warn(query);
           $cordovaSQLite.execute(db, query).then(function(result) {
           	deferred.resolve(result);
           }, function(reason) {

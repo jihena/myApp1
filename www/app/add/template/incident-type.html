@@ -1,12 +1,39 @@
-<ion-view view-title="New incident : Type" align-title="left">
+<ion-view>
+    <ion-nav-title>
+        <span style="color:white">Type</span>
+    </ion-nav-title>
     <ion-content>
 
-        <ion-list>
-            <ion-item ng-click="saveType('Traffic accident')" ng-model="newType">Traffic accident</ion-item>
-            <ion-item ng-click="saveType('Fire')" ng-model="newType">Fire</ion-item>
-            <ion-item ng-click="saveType('Terrorism')" ng-model="newType">Terrorism</ion-item>
-            <ion-item ng-click="saveType('Other')" ng-model="newType">Other</ion-item>
-        </ion-list>
+        <div class="types">
+
+            <ion-list>
+
+                <ion-item class="card" ng-click="saveType('Traffic accident')" ng-model="incident.newType">
+                    <i><img src="img/icon/traffic.png" width="30px"/>  <span>Traffic accident</span></i>
+                </ion-item>
+
+                <ion-item class="card" ng-click="saveType('Fire')" ng-model="incident.newType">
+                    <i><img src="img/icon/fire.png" width="30px"/>  <span>Fire</span></i>
+                </ion-item>
+
+                <ion-item class="card" ng-click="saveType('Terrorism')" ng-model="incident.newType">
+                    <i><img src="img/icon/terrorism.png" width="30px"/>  <span>Terrorism</span></i>
+                </ion-item>
+
+                <ion-item class="card" ng-click="saveType('Natural disaster')" ng-model="incident.newType">
+                    <i><img src="img/icon/disaster.png" width="30px"/>  <span>Natural disaster</span></i>
+                </ion-item>
+
+                <ion-item class="card" ng-click="saveType('Theft')" ng-model="incident.newType">
+                    <i><img src="img/icon/theft.png" width="30px"/>  <span>Theft</span></i>
+                </ion-item>
+
+                <ion-item class="card" ng-click="saveType('Other')" ng-model="incident.newType">
+                    <i><img src="img/icon/1.png" width="30px"/>  <span>Other</span></i>
+                </ion-item>
+
+            </ion-list>
+        </div>
 
     </ion-content>
 </ion-view>
