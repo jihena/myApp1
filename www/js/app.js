@@ -55,10 +55,11 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
 
     .state('app.incident-type', {
       url: '/incident-type',
+      cache : false,
       views: {
         'content': {
           templateUrl: 'app/add/template/incident-type.html',
-          controller: 'AddIncidentController'
+          controller: 'TypeController'
         }
       }
     })
@@ -69,7 +70,7 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
       views: {
         'content': {
           templateUrl: 'app/add/template/incident-photo.html',
-          controller: 'AddIncidentController'
+          controller: 'PhotoController'
         }
       }
     })
@@ -79,13 +80,14 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
       views: {
         'content': {
           templateUrl: 'app/add/template/incident-map.html',
-          controller: 'AddIncidentController'
+          controller: 'MapController'
         }
       }
     })
 
     .state('app.incident-list', {
       url: '/incident-list',
+      cache : false,
       views: {
         'content': {
           templateUrl: 'app/incident/template/incident-list.html',
@@ -107,9 +109,11 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
 
     .state('app.profile', {
       url: '/profile',
+      cache : false,
       views: {
         'content': {
-          templateUrl: 'app/profile/profile.html'
+          templateUrl: 'app/profile/profile.html',
+          controller : 'ProfileController'
         }
       }
     });

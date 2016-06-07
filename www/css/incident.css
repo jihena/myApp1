@@ -1,1 +1,17 @@
-
+#incidents img{
+  background-size: cover;
+  background-position: center;
+}
+.lists .item-divider {
+  background-color: #141414;
+  color: #fff;
+   border-style: none;
+}
+.lists
+{
+  height: cover;
+  position: relative;
+  background-image: url("../img/background2.jpg");
+  background-size: cover;
+  padding-top: 1px;
+}

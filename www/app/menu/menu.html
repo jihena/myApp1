@@ -15,16 +15,24 @@
     </ion-side-menu-content>
     <!-- This is the menu -->
     <ion-side-menu side="left">
-        <ion-header-bar class="barMenu">
+      <!--   <ion-header-bar class="barMenu">
               <h1 class="title">Menu</h1>
         </ion-header-bar>
+       -->
+
         <ion-content>
+          <figure class="snip1336"><img src="img/sample69.jpg" alt="sample69" />
+            <figcaption>
+              <img src="img/profile-sample5.jpg" alt="profile-sample5" class="profile" />
+            </figcaption>
             <ion-list>
-              <ion-item ui-sref="app.incident-type" menu-close>Add incident</ion-item>
-              <ion-item ui-sref="app.incident-list" menu-close>Incidents</ion-item>
-              <ion-item ui-sref="app.profile" menu-close>Profile</ion-item>
-              <ion-item ng-click="signout()" menu-close>Logout</ion-item>
+              <ion-item ng-click="one()" menu-close class="item_menu">Add incident</ion-item>
+              <ion-item ng-click="two()" menu-close class="item_menu">Incidents</ion-item>
+              <ion-item ng-click="three()" menu-close class="item_menu">Profile</ion-item>
+              <ion-item ng-click="signout()" menu-close class="item_menu">Logout</ion-item>
             </ion-list>
+          </figure>
+
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>

@@ -1,10 +1,13 @@
 /* Menu*/
 .barMenu {
   border-color: transparent;
-  background-color: #FB4B17;
-  color: #fff;
+  background-color: #141414;
 }
-
+.item_menu {
+  background-color: #141414;
+  border-style: none;
+  color: #444;
+}
 /* basic stylings ------------------------------------------ */
 h2 		 {
   text-align:center;

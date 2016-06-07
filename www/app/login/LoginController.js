@@ -1,4 +1,4 @@
-appContext.controller('LoginController', function($scope, $state,  $ionicPlatform, LoginFactory, ionicToast){
+appContext.controller('LoginController', function($scope, $state, $rootScope, $ionicPlatform, LoginFactory, AddFactory, ionicToast){
 
     // for opening db:
     var db = null;
@@ -41,19 +41,23 @@ appContext.controller('LoginController', function($scope, $state,  $ionicPlatfor
                              default:
                                   LoginFactory.createIdentifiantTable(db).then(function(result){
                                       console.log('table created');
-                                          LoginFactory.setCredentials(db,user.email,user.password,data).then(function(result){
-                                              $state.go('app.incident-list') ;
-                                              console.log("success");
+                                          LoginFactory.setCredentials(db,user.email,user.password,data.userID).then(function(result){
+                                              AddFactory.createIncidentTable(db).then(function(result){
+                                                  $state.go('app.profile') ;
+                                                  console.log("success");
+                                              },function(){
+                                                console.log(result);
+                                              });
                                           },function(reason){
-                                              ionicToast.show('Une erreur est survenue11111', 'top', false, 2500);
+                                              ionicToast.show('Une erreur est survenue', 'top', false, 2500);
                                           });
                                   },function(){
-                                      ionicToast.show('Une erreur est survenue22222', 'top', false, 2500);
+                                      ionicToast.show('Une erreur est survenue', 'top', false, 2500);
                                   });
                     break;
                 }
             }).error(function(data, status, headers, config ){
-                ionicToast.show('Une erreur est survenue33333', 'top', false, 2500);
+                ionicToast.show('Une erreur est survenue', 'top', false, 2500);
             });
         };
     };

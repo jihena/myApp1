@@ -1,0 +1,26 @@
+.photos{
+  height: cover;
+  position: relative;
+  background-image: url("../img/background2.jpg");
+  background-size: cover;
+}
+.photos .card {
+  width: 300px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+}
+.photos img {
+  height: 250px;
+  width: 250px;
+}
+.photos .input-label {
+  color: #337ab7;
+}
+/*.photos input {
+  color: #f8f8f8;
+}*/
+.photos .item {
+  border-style: none;
+}

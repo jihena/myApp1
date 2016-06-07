@@ -20,7 +20,7 @@ appContext.controller('StartupController', function($ionicPlatform, $ionicHistor
                 $state.go("login")
             }else if(rs.rows.length > 0){
 
-                $state.go("app.incident-list")
+                $state.go("app.profile")
             }else if (rs.rows.length == 0) {
               $state.go("login")
             }
@@ -28,5 +28,5 @@ appContext.controller('StartupController', function($ionicPlatform, $ionicHistor
 
         });
     });
-$ionicHistory.clearHistory();
+//$ionicHistory.clearHistory();
 })

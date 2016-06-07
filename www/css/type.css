@@ -1,0 +1,21 @@
+.types{
+  height: cover;
+  position: relative;
+  background-image: url("../img/background2.jpg");
+  background-size: cover;
+}
+.types ion-item {
+  height: 70px;
+  background-color: #141414;
+}
+
+.types i {
+  font-weight: bold;
+  color: white;
+}
+.types .card {
+  padding-top: 17px;
+}
+.types span {
+  padding-left: 40px;
+}

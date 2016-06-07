@@ -1,19 +1,38 @@
-<ion-view view-title="List of incidents">
-
+<ion-view id="incidents">
+		<ion-nav-title>
+				<span style="color:white">List of incidents</span>
+		</ion-nav-title>
 		<ion-content>
 
-				<ion-list>
-						<ion-item class="item-thumbnail-left"
-											href="#/app/incident/{{incident.id}}"
-											ng-repeat="incident in incidentArray">
-								<img style="background-image:url({{incident.photo}})"/>
-								<div class="info">
-										<h2>Type : {{incident.type}}</h2>
-										<p>{{incident.date}}</p>
-								</div>
-						</ion-item>
-				</ion-list>
+				<div class="lists">
+						<div class="card">
+								<ion-list>
+										<div class="item item-divider">
+												Search
+										</div>
+
+										<label class="item item-input">
+												<input type="text" placeholder="Search" ng-model="searchText">
+										</label>
+
+										<div class="item item-divider">
+											Incidents
+										</div>
+
+										<ion-item class="item-thumbnail-left"
+															href="#/app/incident/{{incident.id}}"
+															ng-repeat="incident in incidentArray | filter : searchText">
+												<img style="background-image:url({{incident.photo}})"/>
+												<div>
+														<h2>{{incident.type}}</h2>
+														<p>{{incident.title}}</p>
+														<p>{{incident.date | date:'dd-MMM-yyyy' }}</p>
+														<p>{{incident.date | date:'HH:mm'}}</p>
+												</div>
+										</ion-item>
+								</ion-list>
+						</div>
+				</div>
 
 		</ion-content>
-
 </ion-view>

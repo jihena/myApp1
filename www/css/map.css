@@ -1,0 +1,12 @@
+.scroll {
+    height: cover;
+    position: relative;
+    background-image: url("../img/background2.jpg");
+    background-size: cover;
+}
+
+#map {
+    width: 90%;
+    height: 60%;
+    margin: 15px auto;
+}
