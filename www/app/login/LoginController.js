@@ -14,7 +14,6 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
     });
 
     $scope.signin = function(user) {
-        console.warn(user);
         if (!user) {
             ionicToast.show('Veuillez remplir tout les champs', 'top', false, 2500);
         } else if(!user.email || user.email =="undefined" || ! validateEmail(user.email) )  {
@@ -40,24 +39,27 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
                                  break;
                              default:
                                   LoginFactory.createIdentifiantTable(db).then(function(result){
-                                      console.log('table created');
                                           LoginFactory.setCredentials(db,user.email,user.password,data.userID).then(function(result){
                                               AddFactory.createIncidentTable(db).then(function(result){
                                                   $state.go('app.profile') ;
-                                                  console.log("success");
+
                                               },function(){
-                                                console.log(result);
+                                                ionicToast.show('Une erreur est survenue', 'top', false, 2500);
+                                                console.warn("createIncidentTable error");
                                               });
                                           },function(reason){
                                               ionicToast.show('Une erreur est survenue', 'top', false, 2500);
+                                              console.warn("setCredentials error");
                                           });
                                   },function(){
                                       ionicToast.show('Une erreur est survenue', 'top', false, 2500);
+                                      console.warn("createIdentifiantTable error");
                                   });
                     break;
                 }
             }).error(function(data, status, headers, config ){
                 ionicToast.show('Une erreur est survenue', 'top', false, 2500);
+                console.warn("erreur serveur login http");
             });
         };
     };

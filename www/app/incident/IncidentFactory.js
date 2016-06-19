@@ -9,7 +9,7 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
         $cordovaSQLite.execute(db,query).then(function(result){
             deferred.resolve(result);
         },function(reason){
-            console.log(reason);
+          console.error(JSON.stringify(reason));
             deferred.reject(reason);
        })
        return deferred.promise;
@@ -26,7 +26,7 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
           $cordovaSQLite.execute(db, query).then(function(result) {
           	deferred.resolve(result);
           }, function(reason) {
-          	console.log("error " + reason);
+          	console.error(JSON.stringify(reason));
               deferred.reject(reason);
           });
 

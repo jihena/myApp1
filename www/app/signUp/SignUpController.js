@@ -44,23 +44,24 @@ appContext.controller('SignUpController', function($scope, $state,  $ionicPlatfo
                              break;
                          default:
                              SignUpFactory.createIdentifiantTable(db).then(function(result){
-                                 console.log('table created: sign up');
-
+                                 console.info('table created: sign up');
                                    SignUpFactory.setCredentials(db,user.firstName, user.lastName,user.email,user.password,data.userID).then(function(result){
                                        $state.go('app.profile');
-                                       console.log("success");
+                                       console.info("success");
                                    },function(reason){
-                                       ionicToast.show('Une erreur est survenue 1111111111', 'top', false, 2500);
+                                       ionicToast.show('Une erreur est survenue', 'top', false, 2500);
+                                       console.warn(reason);
                                    });
 
-                             },function(){
-                                 ionicToast.show('Une erreur est survenue 22222222222', 'top', false, 2500);
+                             },function(reason){
+                                 ionicToast.show('Une erreur est survenue', 'top', false, 2500);
+                                  console.warn(reason);
                              });
                              break;
                      };
 
             }).error(function(data, status, headers, config ){
-                ionicToast.show('Une erreur est survenue 3333333333333333333', 'top', false, 2500);
+                ionicToast.show('Une erreur est survenue', 'top', false, 2500);
             });
         };
     };

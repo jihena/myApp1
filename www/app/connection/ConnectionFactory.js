@@ -5,7 +5,7 @@ appContext.factory('ConnectionFactory', function($http, $q) {
         var deferred=$q.defer();
 
         var request = {
-          url : "",
+          url : "http://buzcard.fr/nepaseffacer.txt",
           method : "GET",
           timeout : 1000,
         }
