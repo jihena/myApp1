@@ -21,18 +21,23 @@
        -->
 
         <ion-content>
-          <figure class="snip1336"><img src="img/sample69.jpg" alt="sample69" />
-            <figcaption>
-              <img src="img/profile-sample5.jpg" alt="profile-sample5" class="profile" />
-            </figcaption>
-            <ion-list>
-              <ion-item ng-click="one()" menu-close class="item_menu">Add incident</ion-item>
-              <ion-item ng-click="two()" menu-close class="item_menu">Incidents</ion-item>
-              <ion-item ng-click="three()" menu-close class="item_menu">Profile</ion-item>
-              <ion-item ng-click="signout()" menu-close class="item_menu">Logout</ion-item>
-            </ion-list>
-          </figure>
-
+            <div class="menu">
+                <div class="menu_img">
+                    <img src="img/profile-sample5.jpg" />
+                </div>
+                <div class="menu_list">
+                  <ion-list>
+                      <ion-item ng-click="one()" menu-close class="item_menu">
+                           <i class="icon ion-compose"></i> Add incident</ion-item>
+                      <ion-item ng-click="two()" menu-close class="item_menu">
+                          <i class="icon ion-ios-list-outline"></i> Incidents</ion-item>
+                      <ion-item ng-click="three()" menu-close class="item_menu">
+                          <i class="icon ion-ios-person-outline"></i> Profile</ion-item>
+                      <ion-item ng-click="signout()" menu-close class="item_menu">
+                          <i class="icon ion-log-out"></i> Logout</ion-item>
+                  </ion-list>
+                </div>
+            </div>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>

@@ -77,6 +77,7 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
 
     .state('app.incident-map', {
       url: '/incident-map',
+      cache : false,
       views: {
         'content': {
           templateUrl: 'app/add/template/incident-map.html',

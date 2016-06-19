@@ -8,8 +8,8 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
         var reportRequest = {
             method: 'POST',
             //url: 'http://192.168.1.107/emergency/web/app.php/incident/report',
-            url: 'http://127.0.0.1/emergency/web/app_dev.php/incident/report',
-            //url: 'http://192.168.1.69/emergency/web/app.php/incident/report',
+            //url: 'http://127.0.0.1/emergency/web/app_dev.php/incident/report',
+            url: 'http://192.168.1.69/emergency/web/app.php/incident/report',
 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -42,7 +42,7 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
         var deferred=$q.defer();
         var CreateQuery = 'CREATE TABLE IF NOT EXISTS incident (' +
             'id INTEGER PRIMARY KEY, ' +
-            'type text, title text, description text, date date, photo text, longitude text, latitude text)';
+            'type text, title text, description text, date date, photo text, longitude integer, latitude integer)';
         $cordovaSQLite.execute(db, CreateQuery).then(
             function(result) {
               console.log(result);

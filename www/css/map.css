@@ -1,7 +1,7 @@
 .scroll {
     height: cover;
     position: relative;
-    background-image: url("../img/background2.jpg");
+    background-image: url("../img/background6.jpg");
     background-size: cover;
 }
 
@@ -9,4 +9,11 @@
     width: 90%;
     height: 60%;
     margin: 15px auto;
+}
+.map_button button {
+  width: 110px;
+  margin-left: 10px;
+}
+.map_button {
+  margin-left: 20px;
 }

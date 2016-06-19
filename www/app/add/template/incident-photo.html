@@ -4,32 +4,28 @@
     </ion-nav-title>
     <ion-content>
         <div class="photos padding">
+            <div class="card">
+              <label class="item item-input item-floating-label item-icon-left">
+                  <span class="input-label">Title</span>
+                  <input type="text" placeholder="Title" ng-model="incident.title">
+              </label>
 
-            <label class="item item-input item-floating-label item-icon-left">
-                <span class="input-label">Title</span>
-                <input type="text" placeholder="Title" ng-model="incident.title">
-            </label>
+              <label class="item item-input item-floating-label item-icon-left">
+                  <span class="input-label">Description</span>
+                  <input type="text" placeholder="Description" ng-model="incident.description">
+              </label>
+            </div>
 
-            <label class="item item-input item-floating-label item-icon-left">
-                <span class="input-label">Description</span>
-                <input type="text" placeholder="Description" ng-model="incident.description">
-            </label>
-            <div >
-                <div class="card">
-                    <div class="item" style="text-align: center">
-                        <img ng-src="{{pictureUrl}}">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <button class="button button-calm"
-                                        ng-click="getPhoto()">Take picture</button>
-                            </div>
-                            <div class="col-sm-3">
-                                <button class="button button-assertive"
-                                        ng-click="selectPhoto()">Select picture</button>
-                            </div>
-                        </div>
-
+            <div class="card">
+                <div class="item">
+                    <div class="photo_button">
+                            <button class="button icon icon-left ion-camera"
+                                    ng-click="getPhoto()"> Take picture</button>
+                            <button class="button icon icon-left ion-image"
+                                    ng-click="selectPhoto()"> Select picture</button>
                     </div>
+                    <img ng-src="{{pictureUrl}}">
+
                 </div>
             </div>
             <div>

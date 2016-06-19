@@ -9,9 +9,6 @@
 }
 .lists
 {
-  height: cover;
-  position: relative;
-  background-image: url("../img/background2.jpg");
-  background-size: cover;
   padding-top: 1px;
+  padding-bottom: 1px;
 }
