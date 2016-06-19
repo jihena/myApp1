@@ -134,7 +134,7 @@ appContext.factory('ProfileFactory', function($q, $http, $cordovaSQLite) {
         $cordovaSQLite.execute(db, query).then(function(result) {
             deferred.resolve(result);
         }, function(reason) {
-            console.log("erreuuuuuuuuuuuuur update : " + reason)
+            console.warn( reason)
             deferred.reject(reason)
         });
         return deferred.promise;
@@ -152,7 +152,7 @@ appContext.factory('ProfileFactory', function($q, $http, $cordovaSQLite) {
                     // console.log("updateeeeee ")
                     deferred.resolve(result);
                 }, function(reason) {
-                    console.log("erreur update : " + reason)
+                    console.log(reason)
                     deferred.reject(reason)
                 });
 

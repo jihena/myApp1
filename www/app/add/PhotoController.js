@@ -43,7 +43,7 @@ appContext.controller('PhotoController', function($scope, $state, $cordovaCamera
                     $scope.pictureUrl = "data:image/jpeg;base64," + imageData;
                 }, function(err) {
                     // error
-                    console.log('camera ERROR :' + imageData);
+                    console.log('camera ERROR :' + err);
                   });
 
           };
@@ -67,7 +67,7 @@ appContext.controller('PhotoController', function($scope, $state, $cordovaCamera
                       console.log('camera data :' + imageData);
                         $scope.pictureUrl = "data:image/jpeg;base64," + imageData;
                     }, function (err) {
-                      console.log('camera ERROR :' + imageData);
+                      console.log('camera ERROR :' + err);
                     });
                 }
           /**

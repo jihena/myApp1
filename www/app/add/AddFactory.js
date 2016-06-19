@@ -7,9 +7,7 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
         // the request parameters
         var reportRequest = {
             method: 'POST',
-            //url: 'http://192.168.1.107/emergency/web/app.php/incident/report',
-            url: 'http://127.0.0.1/emergency/web/app_dev.php/incident/report',
-            //url: 'http://192.168.1.69/emergency/web/app.php/incident/report',
+            url: 'http://192.168.1.6/emergency/web/incident/report',
 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -20,7 +18,6 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                 return str.join("&");
             },
-            timeout: 4000,
             data: {
                 type: incident.newType,
                 title: incident.newTitle,
@@ -45,8 +42,7 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
             'type text, title text, description text, date date, photo text, longitude text, latitude text)';
         $cordovaSQLite.execute(db, CreateQuery).then(
             function(result) {
-              console.log(result);
-                deferred.resolve();
+                deferred.resolve(result);
             },
             function(reason) {
                 deferred.reject();
@@ -60,11 +56,10 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
         var deferred=$q.defer();
         $cordovaSQLite.execute(db, " INSERT INTO incident ( type, title, description, date, photo, longitude, latitude) VALUES (?,?,?,?,?,?,?) ",
                                    [ type, title, description, date, photo, longitude, latitude]).then(function(result) {
-              console.log('------------'+result);
             deferred.resolve();
 
         }, function(reason) {
-          console.log(reason);
+          console.error(JSON.stringify(reason));
            deferred.reject();
         });
         return deferred.promise;

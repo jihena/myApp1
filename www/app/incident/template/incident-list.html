@@ -25,7 +25,7 @@
 												<img style="background-image:url({{incident.photo}})"/>
 												<div>
 														<h2>{{incident.type}}</h2>
-														<p>{{incident.title}}</p>
+														<p  ng-show="incident.title != 'undefined' ">{{incident.title}}</p>
 														<p>{{incident.date | date:'dd-MMM-yyyy' }}</p>
 														<p>{{incident.date | date:'HH:mm'}}</p>
 												</div>

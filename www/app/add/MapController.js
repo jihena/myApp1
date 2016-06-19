@@ -1,6 +1,7 @@
 appContext.controller('MapController', function($scope, $state, $cordovaGeolocation,AddFactory,
-                                                $rootScope, $ionicPlatform, ionicToast, $rootScope,ConnectionFactory) {
+                                                $rootScope, $ionicPlatform, ionicToast, $rootScope,ConnectionFactory,ionicToast,$ionicLoading) {
 
+    $ionicLoading.show();
     var db = null;
     $ionicPlatform.ready(function() {
     /**
@@ -16,83 +17,77 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
         }
     });
 
-            //****************Map***************
-            //**********************************
-            var options = {timeout: 10000, enableHighAccuracy: true};
+            //**************** Map ***************\\
+
+            var options = {timeout: 10000, enableHighAccuracy: false};
             $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+
                 var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
                 $rootScope.incident.longitude = position.coords.longitude;
                 $rootScope.incident.latitude = position.coords.latitude;
-                console.log(position.coords.latitude);
-                console.log(position.coords.longitude);
+
 
                 var mapOptions = {
                   center: latLng,
                   zoom: 15,
                   mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
+
                 $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
                 //Wait until the map is loaded
                 //add marker and infoWindow
                 google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+
                     var marker = new google.maps.Marker({
                         map: $scope.map,
                         animation: google.maps.Animation.DROP,
                         position: latLng,
                         draggable : true
                     });
+                    $ionicLoading.hide();
                     var infoWindow = new google.maps.InfoWindow({
                         content: "Here is the incident!"
                     });
+
                     google.maps.event.addListener(marker, 'click', function () {
                         infoWindow.open($scope.map, marker);
                     });
+
                     google.maps.event.addListener(marker, 'dragend', function(evt){
                         $rootScope.incident.longitude = evt.latLng.lng();
                         $rootScope.incident.latitude = evt.latLng.lat();
-                        console.log('Current Latitude:',evt.latLng.lat(),'Current Longitude:',evt.latLng.lng());
+
                     })
                 });
             }, function(error){
-                //if faut activer le gps
-                //$ionicLoading.hide();
-                //PopupFactory.myPopup('Activez le gps pour determiner la recherche');
-                console.log("Could not get location");
+                ionicToast.show('Could not get location', 'top', false, 2500);
             });
             //********************DATE************************
             var d = new Date().getTime();
-             $rootScope.incident.date = d;
-            console.warn(d);
+            $rootScope.incident.date = d;
+
             //****************Report incident******************
             //*************************************************
             $scope.report = function() {
-                // Add incidebt in the local DB
-                AddFactory.addIncident(db, $rootScope.incident.newType, $rootScope.incident.newTitle, $rootScope.incident.newDescription,
-                        $rootScope.incident.date, $rootScope.incident.newPhoto, $rootScope.incident.longitude, $rootScope.incident.latitude).then(function(result){
-                    $state.go('app.incident-list') ;
-                    console.warn(d);
-                    console.log("success");
-                },function(reason){
-                    console.log(reason);
-                });
-            };
-            //*****************Send incident to the server************************
-            $scope.send = function() {
-              ConnectionFactory.isConnected().then(function () {
+              ConnectionFactory.isConnected().then(function() {
                 //resolve
                 AddFactory.doReport($rootScope.incident).success(function(data, status, headers, config ) {
-                          $scope.report();
-                          $state.go('app.incident-list') ;
-                     }).error(function(data, status, headers, config) {
 
+                            // Add incidebt in the local DB
+                            AddFactory.addIncident(db, $rootScope.incident.newType, $rootScope.incident.newTitle, $rootScope.incident.newDescription,
+                                    $rootScope.incident.date, $rootScope.incident.newPhoto, $rootScope.incident.longitude, $rootScope.incident.latitude).then(function(result){
+                                      ionicToast.show('Incident sent to server', 'top', false, 2500);
+                                      $state.go('app.incident-list');
+                            },function(reason){
+                                ionicToast.show('Could not save incident', 'top', false, 2500);
+                            });
+                     }).error(function(data, status, headers, config) {
+                       console.warn(JSON.stringify(data));
                      });
               }, function(){
-                $scope.report();
-                $state.go('app.incident-list') ;
-                //reject
+                ionicToast.show('Insufficent connection', 'top', false, 2500);
               });
-
-
-
             };
+
 });
