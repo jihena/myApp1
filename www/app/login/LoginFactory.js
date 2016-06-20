@@ -7,7 +7,8 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
         // the request parameters
         var loginRequest = {
             method: 'POST',
-            url: 'http://192.168.1.6/emergency/web/auth/login',
+          
+            url: 'http://emergency.lavrel.com/auth/login',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -85,12 +86,11 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
                     deferred.reject(error);
                 });
             } else {
+                console.log('table nexiste pas');
                 deferred.resolve(0);
-                console.warn('table nexiste pas');
             }
         }, function(reason) {
             deferred.reject(reason);
-            console.warn("selectCredentials error " + JSON.stringify(reason));
         });
         return deferred.promise;
     };

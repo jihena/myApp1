@@ -6,11 +6,12 @@
 				<div class="lists">
 						<div class="card">
 								<ion-item>
-										<div>
-												<h2>{{incident.title}}</h2>
-												<p>{{incident.type}}</p>
-												<p>{{incident.date | date:'dd/MMM/yyyy'}}</p>
-												<p>{{incident.date | date:'HH:mm'}}</p>
+										<div class="s-color-black">
+												<h2>Titre : {{incident.title}}</h2>
+												<p >Type : {{incident.type}}</p>
+												<p>Date : {{incident.date | date:'dd/MMM/yyyy'}}</p>
+												<p>Heure : {{incident.date | date:'HH:mm'}}</p>
+												<p>Adresse : </p>
 										</div>
 								</ion-item>
 
@@ -18,8 +19,8 @@
 										<img src="{{incident.photo}}" />
 								</ion-item>
 
-								<ion-item class="item-body">
-										{{incident.description}}
+								<ion-item class="item-body s-color-black">
+									Description : {{incident.description}}
 								</ion-item>
 						</div>
 				</div>

@@ -7,7 +7,7 @@ appContext.factory('SignUpFactory', function($http, $q, $cordovaSQLite) {
         // the request parameters
         var loginRequest = {
             method: 'POST',
-            url: 'http://192.168.1.6/emergency/web/auth/create',
+            url: 'http://emergency.lavrel.com/app.php/auth/create',
 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

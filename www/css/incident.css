@@ -3,15 +3,22 @@
   background-position: center;
 }
 .lists .item-divider {
-  background-color: #141414;
-  color: #fff;
-   border-style: none;
+  /*background-color: #141414;*/
+  /*color: #fff;*/
+  border-style: none;
 }
 .lists
 {
-  height: cover;
-  position: relative;
-  background-image: url("../img/background2.jpg");
-  background-size: cover;
   padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.s-borderColor{
+	border-bottom:3px solid #eceae6;
+	color: #b71c1c;
+	
+}
+
+.s-color-black ,p{
+  color:black !important;
 }
