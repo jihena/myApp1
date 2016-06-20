@@ -16,38 +16,9 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                 }
             });
 
-            $scope.incidents={photo:""}
             //*********** incident photo *************
             //******************************************
-      /*      
-            if($rootScope.incident.newType=="Theft"){
-              $scope.incidents.photo="img/icon/theft.png" ;
-            }else{
-              $scope.incidents.photo="img/icon/fire.png" ;
-            }
 
-            switch ($rootScope.incident.newType) {
-  case "Oranges":
-    console.log("Oranges : 0.59 € le kilo.");
-    break;
-  case "Pommes":
-    console.log("Pommes : 0.32 € le kilo.");
-    break;
-  case "Bananes":
-    console.log("Bananes : 0.48 € le kilo.");
-    break;
-  case "Cerises":
-    console.log("Cerises : 3.00 € le kilo.");
-    break;
-  case "Mangues":
-  case "Papayes":
-    console.log("Mangues et papayes : 2.79 € le kilo.");
-    break;
-  default:
-    console.log("Désolé, nous n'avons plus de " + expr + ".");
-}
-
-*/
             //****************Map***************
             //**********************************
 
