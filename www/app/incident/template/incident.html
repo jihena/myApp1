@@ -6,11 +6,12 @@
 				<div class="lists">
 						<div class="card">
 								<ion-item>
-										<div>
-												<h2>{{incident.title}}</h2>
-												<p>{{incident.type}}</p>
-												<p>{{incident.date | date:'dd/MMM/yyyy'}}</p>
-												<p>{{incident.date | date:'HH:mm'}}</p>
+										<div class="s-color-black">
+												<h2 ng-show="incident.title!='undefined'"><strong>Titre :</strong> {{incident.title}}</h2>
+												<p ><strong>Type :</strong> {{incident.type}}</p>
+												<p><strong> Date : </strong>{{incident.date | date:'dd/MMM/yyyy'}}</p>
+												<p><strong>Heure :</strong> {{incident.date | date:'HH:mm'}}</p>
+												<p><strong>Adresse : </strong></p>
 										</div>
 								</ion-item>
 
@@ -18,8 +19,8 @@
 										<img src="{{incident.photo}}" />
 								</ion-item>
 
-								<ion-item class="item-body">
-										{{incident.description}}
+								<ion-item class="item-body s-color-black" ng-show="incident.description!='undefined'" >
+									<strong style="color: #b71c1c;">Description :</strong> {{incident.description}}
 								</ion-item>
 						</div>
 				</div>

@@ -1,26 +1,36 @@
 .photos{
   height: cover;
   position: relative;
-  background-image: url("../img/background2.jpg");
+  /*background-image: url("/img/background6.jpg");*/
   background-size: cover;
+
 }
+
 .photos .card {
-  width: 300px;
-  margin-top: 15px;
+  width: 100%;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0px;
 }
+
 .photos img {
   height: 250px;
-  width: 250px;
+  width: 265px;
 }
+
 .photos .input-label {
-  color: #337ab7;
+    color: #b71c1c;
 }
-/*.photos input {
-  color: #f8f8f8;
-}*/
-.photos .item {
-  border-style: none;
+
+.photos .card button {
+  width: 50%;
+  font-size: 14px;
+  background-color: #F5EBC8;
 }
+.photo_button {
+  padding-bottom: 5px;
+}
+.item{
+/*  text-align: center;
+*/}

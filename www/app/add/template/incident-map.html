@@ -1,12 +1,39 @@
 <ion-view>
+    <ion-nav-title>
+        <span style="color:white">Map</span>
+    </ion-nav-title>
 
-    <ion-content title="Report">
-        <div class="padding">
-          <button ng-click="report()" type="submit" class="button button-full button-dark">Report</button>
 
+    <ion-content style="background-color: #eceae6;">
+
+        
+        <div class="card"  style="   margin-bottom: 70px; margin-top: 10px;" >
+
+          <ion-item style="padding: 8px;">
+
+          <i><img src="img/icon/{{ incident.newType | lowercase}}.png" width="50px"/>  <span><B>{{incident.newType}}</B></span></i>     
+
+        </ion-item>
+
+          <div class="" id="map" data-tap-disabled="true"></div>
+
+          <ion-item>
+          
+              <i ><img src="img/icon/marker.png" width="50px" style="vertical-align: top; width: 50px;"/>  <span style="white-space: pre-wrap !important; display: inline-block; margin-right: 50px">{{incident.address}}</span></i>    
+        </ion-item>
+
+      
         </div>
 
-        <div class="card" id="map" data-tap-disabled="true"></div>
 
     </ion-content>
+
+    <div class="tabs tabs-icon-only">
+        <a class="tab-item icon icon-left ion-close s-tab-map" ng-click="cancel()">
+      Annuler
+    </a>
+        <a class="tab-item icon-left ion-paper-airplane s-tab-map" ng-click="report()">
+      Report
+    </a>
+    </div>
 </ion-view>

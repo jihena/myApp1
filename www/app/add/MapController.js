@@ -1,5 +1,5 @@
 appContext.controller('MapController', function($scope, $state, $cordovaGeolocation,AddFactory,
-                                                $rootScope, $ionicPlatform, ionicToast, $rootScope,ConnectionFactory,ionicToast,$ionicLoading) {
+                                                $rootScope, $ionicPlatform, ionicToast, $rootScope,ConnectionFactory,ionicToast,$ionicLoading,$window) {
 
     $ionicLoading.show();
     var db = null;
@@ -17,7 +17,12 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
         }
     });
 
+
+
+
+
             //**************** Map ***************\\
+            var geocoder = new google.maps.Geocoder();
 
             var options = {timeout: 10000, enableHighAccuracy: false};
             $cordovaGeolocation.getCurrentPosition(options).then(function(position){
@@ -34,10 +39,27 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                   mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
+                // get address location from latitude and longitude in Google Map
+                geocoder.geocode({
+                        latLng: latLng
+                    },
+                    function(responses) {
+                        if (responses && responses.length > 0) {
+                            $scope.incident.address = responses[0].formatted_address;
+                            console.log($scope.incident.address);
+                        } else {
+                            ionicToast.show('Not getting Any address for given latitude and longitude.', 'top', false, 2500);
+                        }
+                    }
+                );
+
+
                 $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
                 //Wait until the map is loaded
                 //add marker and infoWindow
                 google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+                    
 
                     var marker = new google.maps.Marker({
                         map: $scope.map,
@@ -45,9 +67,14 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                         position: latLng,
                         draggable : true
                     });
+
+
                     $ionicLoading.hide();
+                    var InfoWindowArray=[];
+
+
                     var infoWindow = new google.maps.InfoWindow({
-                        content: "Here is the incident!"
+                        content: $scope.incident.address
                     });
 
                     google.maps.event.addListener(marker, 'click', function () {
@@ -57,12 +84,36 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                     google.maps.event.addListener(marker, 'dragend', function(evt){
                         $rootScope.incident.longitude = evt.latLng.lng();
                         $rootScope.incident.latitude = evt.latLng.lat();
+                        console.log('Current Latitude:', evt.latLng.lat(), 'Current Longitude:', evt.latLng.lng());
+                        latLng = new google.maps.LatLng(evt.latLng.lat(), evt.latLng.lng());
+
+
+                        // get address location from latitude and longitude in Google Map
+                        geocoder.geocode({latLng: latLng},function(responses) {
+                                if (responses && responses.length > 0) {
+                                    $scope.$apply(function() {
+                                     $scope.incident.address = responses[0].formatted_address;
+                                      });
+                                    console.log($scope.incident.address);
+                                     infoWindow.setContent($scope.incident.address)
+                                    
+                                    
+                                } else {
+                                    ionicToast.show('Not getting Any address for given latitude and longitude.', 'top', false, 2500);
+                                }
+                            }
+                        );
 
                     })
+
+
                 });
             }, function(error){
                 ionicToast.show('Could not get location', 'top', false, 2500);
             });
+
+
+
             //********************DATE************************
             var d = new Date().getTime();
             $rootScope.incident.date = d;
@@ -89,5 +140,10 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                 ionicToast.show('Insufficent connection', 'top', false, 2500);
               });
             };
+
+
+            $scope.cancel= function(){
+                $state.go("app.incident-type");
+            }
 
 });

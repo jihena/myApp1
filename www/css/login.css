@@ -22,8 +22,9 @@ svg {
 .cont {
   position: relative;
   height: 100%;
-  background-image: url("../img/slider-2.jpg");
+  background-image: url("../img/1.jpg");
   background-size: cover;
+  background-position: 20%;
   overflow: auto;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }

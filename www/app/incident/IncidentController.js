@@ -28,6 +28,8 @@ appContext.controller('IncidentController', function($scope, $ionicPlatform, $st
                     longitude: result.rows.item(0).longitude,
                     latitude: result.rows.item(0).latitude
                 }
+
+             
             }
         }, function(reason) {
         });

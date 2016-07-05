@@ -4,36 +4,92 @@
     </ion-nav-title>
     <ion-content>
 
-        <div class="types">
-
-            <ion-list>
-
-                <ion-item class="card" ng-click="saveType('Traffic accident')" ng-model="incident.newType">
-                    <i><img src="img/icon/traffic.png" width="30px"/>  <span>Traffic accident</span></i>
-                </ion-item>
-
-                <ion-item class="card" ng-click="saveType('Fire')" ng-model="incident.newType">
-                    <i><img src="img/icon/fire.png" width="30px"/>  <span>Fire</span></i>
-                </ion-item>
-
-                <ion-item class="card" ng-click="saveType('Terrorism')" ng-model="incident.newType">
-                    <i><img src="img/icon/terrorism.png" width="30px"/>  <span>Terrorism</span></i>
-                </ion-item>
-
-                <ion-item class="card" ng-click="saveType('Natural disaster')" ng-model="incident.newType">
-                    <i><img src="img/icon/disaster.png" width="30px"/>  <span>Natural disaster</span></i>
-                </ion-item>
-
-                <ion-item class="card" ng-click="saveType('Theft')" ng-model="incident.newType">
-                    <i><img src="img/icon/theft.png" width="30px"/>  <span>Theft</span></i>
-                </ion-item>
-
-                <ion-item class="card" ng-click="saveType('Other')" ng-model="incident.newType">
-                    <i><img src="img/icon/1.png" width="30px"/>  <span>Other</span></i>
-                </ion-item>
-
-            </ion-list>
+<div class="container">
+    <div class="row row-bootstrap">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-click="saveType('Accident de la route')" ng-model="incident.newType">
+            <div class="box-types">
+                <div class="box-icon" style="background-color: #dfc34b;">
+                    <img src="img/icon/accident de la route.png" /> 
+                </div>
+                <div class="info">
+                    <h4 class="text-center">Accident de la route</h4>
+                   
+                </div>
+            </div>
         </div>
+        
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " ng-click="saveType('Incendie')" ng-model="incident.newType">
+            <div class="box-types">
+                <div class="box-icon" style="background-color: #40cd6f;">
+                    <img src="img/icon/incendie.png" /> 
+                </div>
+                <div class="info">
+                    <h4 class="text-center">Incendie</h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row row-bootstrap">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-click="saveType('Terrorisme')" ng-model="incident.newType">
+            <div class="box-types">
+                <div class="box-icon" style="background-color: #40afcd;">
+                    <img src="img/icon/terrorisme.png" /> 
+                </div>
+                <div class="info">
+                    <h4 class="text-center">Terrorisme</h4>
+                   
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-click="saveType('Catastrophe naturelle')" ng-model="incident.newType">
+            <div class="box-types">
+                <div class="box-icon" style="background-color: #d12560;">
+                    <img src="img/icon/catastrophe naturelle.png" /> 
+                </div>
+                <div class="info">
+                    <h4 class="text-center">Catastrophe naturelle</h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row row-bootstrap">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-click="saveType('Vol')" ng-model="incident.newType">
+            <div class="box-types">
+                <div class="box-icon" style="background-color: #57a544;">
+                    <img src="img/icon/vol.png" />
+                </div>
+                <div class="info">
+                    <h4 class="text-center">Vol</h4>
+                   
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-click="saveType('Autre')" ng-model="incident.newType">
+            <div class="box-types">
+                <div class="box-icon" style="background-color: #a325d1;">
+                    <img src="img/icon/autre.png"/>
+                </div>
+                <div class="info">
+                    <h4 class="text-center">Autre</h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+ 
+
 
     </ion-content>
 </ion-view>
+

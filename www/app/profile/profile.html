@@ -4,15 +4,38 @@
     </ion-nav-title>
     <ion-content>
 
-        <figure class="snip1336"><img src="img/profile-sample5.jpg" alt="sample69" style="width: 100%; height: 50%;" />
+        <div class="window">
+  <div class="overlay"></div>
+  <div class="box header">
+    <img src="{{user.profilPhoto}}" alt="" />
+    <h2>{{user.firstName}} {{user.lastName}}</h2>
+    <h4>{{user.email}}</h4>
+  </div>
+  <div class="box footer">
 
-            <figcaption>
-              <h2>{{user.firstName}} {{user.lastName}}<span>{{user.email}}</span></h2>
-              <p>If you want to stay dad you've got to polish your image. I think the image we need to create for you is "repentant but learning".</p>
-              <a ui-sref="app.incident-type" class="follow">Report incident</a>
-              <a ui-sref="app.incident-list" class="info">My incidents</a>
-            </figcaption>
-        </figure>
+
+   <ion-list >
+
+        <ion-item class="item-icon-right " ng-click="selectPhoto()" style="margin:10px;">
+          Modifier la photo de profile
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+        <ion-item class="item-icon-right "  ui-sref="app.incident-type" style="margin:10px;">
+        Report incident
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+                <ion-item class="item-icon-right " ui-sref="app.incident-list" type="item-text-wrap" style="margin:10px;">
+        My incidents
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+    </ion-list>
+
+  </div>
+</div>
+
+
 
     </ion-content>
 </ion-view>

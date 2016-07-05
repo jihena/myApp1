@@ -1,4 +1,4 @@
-appContext.controller('StartupController', function($ionicPlatform, $ionicHistory, LoginFactory, $state) {
+appContext.controller('StartupController', function($ionicPlatform, $ionicHistory, LoginFactory, $state, $ionicHistory) {
 
     // for opening db:
     var db = null;
@@ -15,6 +15,12 @@ appContext.controller('StartupController', function($ionicPlatform, $ionicHistor
         //-----------
 
         LoginFactory.selectCredentials(db).then(function (rs) {
+
+            $ionicHistory.nextViewOptions({
+                    disableBack: true,
+                    disableAnimate: true,
+                    historyRoot: true
+                });
             console.warn(rs)
             if (0 == rs) {
                 $state.go("login")
