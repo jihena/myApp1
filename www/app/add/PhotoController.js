@@ -1,5 +1,5 @@
-appContext.controller('PhotoController', function($scope, $state, $cordovaCamera, $cordovaFile,
-                                                  $ionicPlatform, ionicToast, $rootScope) {
+appContext.controller('PhotoController', function($scope, $state, $cordovaCamera, $cordovaFile, $cordovaGeolocation,ConnectionFactory,$cordovaDialogs,
+                                                  $ionicPlatform, ionicToast, $rootScope, $ionicLoading) {
                                                     console.warn($rootScope.incident.newType);
 
     var db = null;//database instance.
@@ -78,7 +78,54 @@ appContext.controller('PhotoController', function($scope, $state, $cordovaCamera
               $rootScope.incident.newTitle = incident.title;
               $rootScope.incident.newDescription = incident.description;
               $rootScope.incident.newPhoto = $scope.pictureUrl;
-              $state.go('app.incident-map') ;
+
+              $ionicLoading.show();
+              //checkout the network connection
+              console.log("checkout the network connection")
+              ConnectionFactory.isConnected().then(function() {
+                console.log("is connected")
+                var options = {
+                    timeout: 5000,
+                    enableHighAccuracy: true
+                };
+                $cordovaGeolocation.getCurrentPosition(options).then(function(position) {
+                   $ionicLoading.hide();
+
+                   $state.go('app.incident-map') ;
+
+
+                }, function(error) {
+                    //if faut activer le gps
+                    $ionicLoading.hide();
+                    cordova.dialogGPS("Utilier le gps, ainsi que les réseau cellulaires et wi-fi pour déterminer la position",
+                        "Use GPS, with wifi or 3G.",
+                        function(buttonIndex) {
+                            switch (buttonIndex) {
+                                case 0:
+                                    console.log("gps non activé");
+                                    break; //cancel
+                                case 2:
+                                    console.log("il faut rafraichir la page");
+                                    break; //user go to configuration
+                            }
+                        },
+                        "Utiliser ma position ?"
+                        , ["Non", "Oui"]
+                    );
+                    console.log(error)
+                    console.log("Could not get location");
+                });
+
+          
+              }, function() {
+                $ionicLoading.hide();
+                console.log("noooooooooooo connection")
+                  $cordovaDialogs.alert('Utilier le gps, ainsi que les réseau cellulaires et wi-fi pour déterminer la position', 'Activer le wi-fi', 'Ok')
+                  .then(function() {
+                    // callback success
+                  });
+                  
+              });
            };
 
 });

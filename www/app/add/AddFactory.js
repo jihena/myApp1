@@ -7,7 +7,7 @@ appContext.factory('AddFactory', function($http, $q, $cordovaSQLite, $rootScope)
         // the request parameters
         var reportRequest = {
             method: 'POST',
-            url: 'http://192.168.1.6/emergency/web/incident/report',
+            url: 'http://emergency.lavrel.com/incident/report',
 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

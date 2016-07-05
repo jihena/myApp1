@@ -7,7 +7,7 @@ appContext.factory('SignUpFactory', function($http, $q, $cordovaSQLite) {
         // the request parameters
         var loginRequest = {
             method: 'POST',
-            url: 'http://192.168.1.6/emergency/web/auth/create',
+            url: 'http://emergency.lavrel.com/auth/create',
 
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -37,7 +37,7 @@ appContext.factory('SignUpFactory', function($http, $q, $cordovaSQLite) {
         var deferred=$q.defer();
         var CreateQuery = 'CREATE TABLE IF NOT EXISTS identifiant (' +
             'id INTEGER PRIMARY KEY, ' +
-            'firstName text, lastName text, email text, password text,userId integer)';
+            'firstName text, lastName text, email text, password text,userId integer, profilPhoto text)';
         $cordovaSQLite.execute(db, CreateQuery).then(
             function(result) {
                 deferred.resolve();
@@ -53,7 +53,8 @@ appContext.factory('SignUpFactory', function($http, $q, $cordovaSQLite) {
      */
     var setCredentials = function(db, firstName, lastName, email, password,userId) {
         var deferred=$q.defer();
-        $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, firstName, lastName, email, password,userId) VALUES (?,?,?,?,?,?) ", [1, firstName, lastName, email, password, userId]).then(function(result) {
+        $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, firstName, lastName, email, password,userId) VALUES (?,?,?,?,?,?) ", 
+            [1, firstName, lastName, email, password, userId]).then(function(result) {
               console.log(result);
             deferred.resolve();
 

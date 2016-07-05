@@ -33,9 +33,28 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
   	    return deferred.promise;
     	};
 
+
+  /**
+    * delete incident details from local db
+    */
+      var emptyIncidentTable = function(db){
+
+          var deferred = $q.defer();
+          var query = 'DROP TABLE "incident"';
+          $cordovaSQLite.execute(db, query).then(function(result) {
+            deferred.resolve(result);
+          }, function(reason) {
+            console.error(JSON.stringify(reason));
+              deferred.reject(reason);
+          });
+
+        return deferred.promise;
+      };
+
     return {
         getLocalIncidentList : getLocalIncidentList,
-        getLocalIncidentById : getLocalIncidentById
+        getLocalIncidentById : getLocalIncidentById,
+        emptyIncidentTable : emptyIncidentTable
     }
 
 });

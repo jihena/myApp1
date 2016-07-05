@@ -8,11 +8,21 @@ appContext.factory('ConnectionFactory', function($http, $q) {
           url : "http://buzcard.fr/nepaseffacer.txt",
           method : "GET",
           timeout : 1000,
+          params: { 
+               'foobar': new Date().getTime() 
+           },
         }
 
         $http(request).success(function(data, status, headers, config ){
             // voila ma promese avec ok
-            deferred.resolve();
+          if (data == "OK") {
+             //connected
+                 deferred.resolve();
+           } else {
+              // not connected
+               deferred.reject();
+           }
+           
         }).error(function(data, status, headers, config ){
           //voila ma promesse avec un dsl
             deferred.reject();

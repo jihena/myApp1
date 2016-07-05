@@ -1,38 +1,43 @@
 <ion-view id="incidents">
-		<ion-nav-title>
-				<span style="color:white">List of incidents</span>
-		</ion-nav-title>
-		<ion-content>
+    <ion-nav-title>
+        <span style="color:white">List of incidents</span>
+    </ion-nav-title>
+    <ion-content>
 
-				<div class="lists">
-						<div class="card">
-								<ion-list>
-										<div class="item item-divider">
-												Search
-										</div>
 
-										<label class="item item-input">
-												<input type="text" placeholder="Search" ng-model="searchText">
-										</label>
 
-										<div class="item item-divider">
-											Incidents
-										</div>
+        <ion-list>
 
-										<ion-item class="item-thumbnail-left"
-															href="#/app/incident/{{incident.id}}"
-															ng-repeat="incident in incidentArray | filter : searchText">
-												<img style="background-image:url({{incident.photo}})"/>
-												<div>
-														<h2>{{incident.type}}</h2>
-														<p  ng-show="incident.title != 'undefined' ">{{incident.title}}</p>
-														<p>{{incident.date | date:'dd-MMM-yyyy' }}</p>
-														<p>{{incident.date | date:'HH:mm'}}</p>
-												</div>
-										</ion-item>
-								</ion-list>
-						</div>
-				</div>
+            <div class="card ">
+                
+                <label class="item item-input">
+					<input type="text" placeholder="Recherche" ng-model="searchText"/>
+				</label>
+            </div>
 
-		</ion-content>
+
+            <div class="card" style="background-color: #eceae6;">
+
+
+                <div class="item s-borderColor">
+                    Incidents
+                </div>
+
+                <ion-item class="item-thumbnail-left item-icon-right " href="#/app/incident/{{incident.id}}" ng-repeat="incident in incidentArray | filter : searchText" type="item-text-wrap" style="margin:0px 0px 10px 0px;">
+
+                    <img style="background-image:url({{incident.photo}})" />
+                    <h2>{{incident.type}} </h2>
+                    <p ng-show="incident.title != 'undefined' ">{{incident.title}} </p>
+                    <p>Date: {{incident.date | date:'dd-MMM-yyyy' }} </p>
+                    <p>Heure : {{incident.date | date:'HH:mm'}}</p>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </ion-item>
+            </div>
+        </ion-list>
+
+
+        </div>
+        </div>
+
+    </ion-content>
 </ion-view>
