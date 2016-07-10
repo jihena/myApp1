@@ -53,7 +53,7 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
                                               $ionicPush.init({
                                                   "debug": false,
                                                   "onNotification": function(notification) {
-
+                                                    console.warn(JSON.stringify(notification) );
                                                   },
                                                   "onRegister": function(data) {
                                                       localStorage.setItem('deviceToken', data.token);
@@ -62,7 +62,7 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
                                                       LoginFactory.sendDeviceToken(data.token).success(function(data){
                                                         if("OK" == data.response){
                                                           $ionicLoading.hide();
-                                                          $state.go('app.profile') ;
+                                                          $state.go('app.profile');
                                                           console.warn("ok");
                                                         }else {
                                                           console.warn("nok");
