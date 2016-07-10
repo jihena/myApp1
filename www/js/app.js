@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
+var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast','ionic.service.core','ionic.service.push'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -19,6 +19,9 @@ var appContext = angular.module('starter', ['ionic','ngCordova','ionic-toast'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+
+
   });
 })
 

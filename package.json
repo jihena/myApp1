@@ -27,7 +27,14 @@
     },
     "cordova-plugin-camera",
     "cordova-plugin-file",
-    "cordova-plugin-geolocation"
+    "cordova-plugin-geolocation",
+    {
+      "variables": {
+        "SENDER_ID": "680979566230"
+      },
+      "locator": "phonegap-plugin-push",
+      "id": "phonegap-plugin-push"
+    }
   ],
   "cordovaPlatforms": [
     "android"

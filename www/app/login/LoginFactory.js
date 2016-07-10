@@ -50,7 +50,7 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
     var setCredentials = function(db,firstName ,lastName ,email, password,userId) {
       localStorage.setItem("userId", userId);
         var deferred=$q.defer();
-        $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, firstName, lastName, email, password,userId) VALUES (?,?,?,?,?,?) ", 
+        $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, firstName, lastName, email, password,userId) VALUES (?,?,?,?,?,?) ",
         [1, firstName, lastName, email, password, userId]).then(function(result) {
             deferred.resolve();
         }, function(reason) {
@@ -64,7 +64,7 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
      */
     var emptyIdentifiantTable = function(db) {
         var deferred=$q.defer();
-        var query = "DELETE FROM identifiant where id = 1";
+        var query = "DELETE FROM identifiant";
         $cordovaSQLite.execute(db, query).then(function(result) {
             deferred.resolve(result);
         }, function(reason) {
@@ -96,6 +96,30 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
         return deferred.promise;
     };
 
+    var sendDeviceToken = function(token){
+      // the request parameters
+      var request = {
+          method: 'POST',
+          url: 'http://emergency.lavrel.com/auth/save_token',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          transformRequest: function(obj) {
+              var str = [];
+              for (var p in obj)
+                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              return str.join("&");
+          },
+          timeout: 4000,
+          data: {
+              id: localStorage.getItem("userId"),
+              token: token
+          }
+      };
+      // the HTTP request
+      return $http(request);
+    }
+
 
     /**
      * the factory return
@@ -105,6 +129,7 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
         createIdentifiantTable : createIdentifiantTable,
         setCredentials : setCredentials,
         emptyIdentifiantTable : emptyIdentifiantTable,
-        selectCredentials : selectCredentials
+        selectCredentials : selectCredentials,
+        sendDeviceToken : sendDeviceToken
     }
 })
