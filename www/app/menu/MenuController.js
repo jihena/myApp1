@@ -20,12 +20,12 @@ appContext.controller('MenuController', function($scope, $state, $ionicPlatform,
             $state.go("startup");
 
 
-        },function(reason){ 
-
+        },function(reason){
+          console.warn(reason);
         });
 
       },function(reason){
-
+        console.warn(reason);
       });
         console.log('deconnexion');
 
