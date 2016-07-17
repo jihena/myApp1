@@ -48,7 +48,7 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                             $scope.incident.address = responses[0].formatted_address;
                             console.log($scope.incident.address);
                         } else {
-                            ionicToast.show('Not getting Any address for given latitude and longitude.', 'top', false, 2500);
+                            ionicToast.show('Ne peut pas obtenir votre adresse.', 'top', false, 2500);
                         }
                     }
                 );
@@ -99,7 +99,7 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                                     
                                     
                                 } else {
-                                    ionicToast.show('Not getting Any address for given latitude and longitude.', 'top', false, 2500);
+                                    ionicToast.show('Ne peut pas obtenir votre adresse.', 'top', false, 2500);
                                 }
                             }
                         );
@@ -109,7 +109,7 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
 
                 });
             }, function(error){
-                ionicToast.show('Could not get location', 'top', false, 2500);
+                ionicToast.show('impossible de localiser votre emplacement ', 'top', false, 2500);
             });
 
 
@@ -121,6 +121,7 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
             //****************Report incident******************
             //*************************************************
             $scope.report = function() {
+              $ionicLoading.show();
               ConnectionFactory.isConnected().then(function() {
                 //resolve
                 AddFactory.doReport($rootScope.incident).success(function(data, status, headers, config ) {
@@ -128,16 +129,20 @@ appContext.controller('MapController', function($scope, $state, $cordovaGeolocat
                             // Add incidebt in the local DB
                             AddFactory.addIncident(db, $rootScope.incident.newType, $rootScope.incident.newTitle, $rootScope.incident.newDescription,
                                     $rootScope.incident.date, $rootScope.incident.newPhoto, $rootScope.incident.longitude, $rootScope.incident.latitude).then(function(result){
-                                      ionicToast.show('Incident sent to server', 'top', false, 2500);
+                                      ionicToast.show('Incident envoyé au server', 'top', false, 2500);
+                                      $ionicLoading.hide();
                                       $state.go('app.incident-list');
                             },function(reason){
-                                ionicToast.show('Could not save incident', 'top', false, 2500);
+                                $ionicLoading.hide();
+                                ionicToast.show('Impossible d\'envoyer l\'incident', 'top', false, 2500);
                             });
                      }).error(function(data, status, headers, config) {
+                        $ionicLoading.hide();
                        console.warn(JSON.stringify(data));
                      });
               }, function(){
-                ionicToast.show('Insufficent connection', 'top', false, 2500);
+                $ionicLoading.hide();
+                ionicToast.show('Pas de connection', 'top', false, 2500);
               });
             };
 

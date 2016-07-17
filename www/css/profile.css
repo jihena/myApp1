@@ -45,10 +45,10 @@ li {
 .overlay {
   background: #158 url("../img/slider-2.jpg") center no-repeat; /*slider-2*/
   background-size: cover;
-  height: calc(100% + 40px);
+  height: calc(100% - 20px);
   margin: -20px;
   position: relative;
-  width: calc(100% + 40px);
+  width: calc(100% + 20px );
   -webkit-filter: blur(10px);
   -moz-filter: blur(10px);
   filter: blur(10px);
@@ -98,7 +98,7 @@ li {
   margin: 4em auto 2.5em;
   object-fit: cover;
   width: 140px;
-  background-image: url("../img/user.png");
+  /*background-image: url("../img/user.png");*/
   background-size: contain;
 }
 
@@ -132,7 +132,7 @@ li {
   text-align: center;
   top: 380px;
   width: inherit;
-  height: 100%
+  
   
 }
 

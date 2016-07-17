@@ -47,11 +47,11 @@ appContext.factory('LoginFactory', function($http, $q, $cordovaSQLite) {
     /**
      * save the user credentials into the identifiant Table
      */
-    var setCredentials = function(db,firstName ,lastName ,email, password,userId) {
+    var setCredentials = function(db,firstName ,lastName ,email, password,userId,profilPhoto) {
       localStorage.setItem("userId", userId);
         var deferred=$q.defer();
-        $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, firstName, lastName, email, password,userId) VALUES (?,?,?,?,?,?) ",
-        [1, firstName, lastName, email, password, userId]).then(function(result) {
+        $cordovaSQLite.execute(db, " INSERT INTO identifiant (id, firstName, lastName, email, password,userId,profilPhoto) VALUES (?,?,?,?,?,?,?) ",
+        [1, firstName, lastName, email, password, userId, profilPhoto]).then(function(result) {
             deferred.resolve();
         }, function(reason) {
            deferred.reject();

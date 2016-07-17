@@ -23,18 +23,18 @@
         <ion-content>
                       <div class="menu">
                 <div class="menu_img">
-                    <img src="img/profile-sample5.jpg" />
+                    <img src="{{userMenu.profilPhoto}}" />
                 </div>
                 <div class="menu_list">
                   <ion-list>
                       <ion-item ng-click="one()" menu-close class="item_menu">
-                           <i class="icon ion-compose"></i> Add incident</ion-item>
+                           <i class="icon ion-compose"></i> Ajouter incident</ion-item>
                       <ion-item ng-click="two()" menu-close class="item_menu">
-                          <i class="icon ion-ios-list-outline"></i> Incidents</ion-item>
+                          <i class="icon ion-ios-list-outline"></i> Mes incidents</ion-item>
                       <ion-item ng-click="three()" menu-close class="item_menu">
                           <i class="icon ion-ios-person-outline"></i> Profile</ion-item>
                       <ion-item ng-click="signout()" menu-close class="item_menu">
-                          <i class="icon ion-log-out"></i> Logout</ion-item>
+                          <i class="icon ion-log-out"></i> Déconnexion</ion-item>
                   </ion-list>
                 </div>
             </div>

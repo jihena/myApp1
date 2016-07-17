@@ -40,7 +40,7 @@ appContext.factory('IncidentFactory', function($q, $cordovaSQLite) {
       var emptyIncidentTable = function(db){
 
           var deferred = $q.defer();
-          var query = 'DROP TABLE "incident"';
+          var query = 'DROP TABLE IF EXISTS "incident"';
           $cordovaSQLite.execute(db, query).then(function(result) {
             deferred.resolve(result);
           }, function(reason) {

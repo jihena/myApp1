@@ -33,7 +33,7 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
                                  break;
                              case "wrong_password":
                                 $ionicLoading.hide();
-                                ionicToast.show('password incorrecte', 'top', false, 3500);
+                                ionicToast.show('Mot de passe incorrecte', 'top', false, 3500);
                                  break;
                              case "NOT_ENABLED":
                                 $ionicLoading.hide();
@@ -41,11 +41,11 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
                                  break;
                              case "NOK":
                                  $ionicLoading.hide();
-                                 ionicToast.show('email ou password non valide', 'top', false, 3500);
+                                 ionicToast.show('email ou mot de passe non valide', 'top', false, 3500);
                                  break;
                              case "OK":
                                   LoginFactory.createIdentifiantTable(db).then(function(result){
-                                          LoginFactory.setCredentials(db,data.userName, data.userLastName, user.email,user.password,data.userID).then(function(result){
+                                          LoginFactory.setCredentials(db,data.userName, data.userLastName, user.email,user.password,data.userID,"img/user.png").then(function(result){
                                               AddFactory.createIncidentTable(db).then(function(result){
                                               // -----------------------------------------
                                               // -----------

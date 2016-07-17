@@ -97,21 +97,10 @@ appContext.controller('PhotoController', function($scope, $state, $cordovaCamera
                 }, function(error) {
                     //if faut activer le gps
                     $ionicLoading.hide();
-                    cordova.dialogGPS("Utilier le gps, ainsi que les réseau cellulaires et wi-fi pour déterminer la position",
-                        "Use GPS, with wifi or 3G.",
-                        function(buttonIndex) {
-                            switch (buttonIndex) {
-                                case 0:
-                                    console.log("gps non activé");
-                                    break; //cancel
-                                case 2:
-                                    console.log("il faut rafraichir la page");
-                                    break; //user go to configuration
-                            }
-                        },
-                        "Utiliser ma position ?"
-                        , ["Non", "Oui"]
-                    );
+                    $cordovaDialogs.alert("Utilier le gps, ainsi que les réseau cellulaires et wi-fi pour déterminer la position",
+                        "Activer le GPS","ok").then(function() {
+                          // callback success
+                          });
                     console.log(error)
                     console.log("Could not get location");
                 });

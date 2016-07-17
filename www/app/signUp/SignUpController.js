@@ -1,4 +1,4 @@
-appContext.controller('SignUpController', function($scope, $state,  $ionicPlatform, SignUpFactory, ionicToast){
+appContext.controller('SignUpController', function($scope, $state,  $ionicPlatform, SignUpFactory, ionicToast, $ionicLoading){
 
     // for opening db:
     var db = null;
@@ -34,26 +34,32 @@ appContext.controller('SignUpController', function($scope, $state,  $ionicPlatfo
           }
         }
         else{
+            $ionicLoading.show();
             SignUpFactory.signUp(user).success(function(data, status, headers, config ){
                 switch (data.response) {
                          case "already_exist":
+                            $ionicLoading.hide();
                             ionicToast.show('Ce compte a déjà été utilisé', 'top', false, 2500);
                              break;
                          case "NOK":
-                             ionicToast.show('email ou password non valide', 'top', false, 2500);
+                            $ionicLoading.hide();
+                             ionicToast.show('email ou mot de passe non valide', 'top', false, 2500);
                              break;
                          default:
                              SignUpFactory.createIdentifiantTable(db).then(function(result){
                                  console.info('table created: sign up');
-                                   SignUpFactory.setCredentials(db,user.firstName, user.lastName,user.email,user.password,data.userID).then(function(result){
+                                   SignUpFactory.setCredentials(db,user.firstName, user.lastName,user.email,user.password,data.userID,"img/user.png").then(function(result){
+                                      $ionicLoading.hide();
                                        $state.go('app.profile');
                                        console.info("success");
                                    },function(reason){
+                                    $ionicLoading.hide();
                                        ionicToast.show('Une erreur est survenue', 'top', false, 2500);
                                        console.warn(reason);
                                    });
 
                              },function(reason){
+                                $ionicLoading.hide();
                                  ionicToast.show('Une erreur est survenue', 'top', false, 2500);
                                   console.warn(reason);
                              });
@@ -61,6 +67,7 @@ appContext.controller('SignUpController', function($scope, $state,  $ionicPlatfo
                      };
 
             }).error(function(data, status, headers, config ){
+                $ionicLoading.hide();
                 ionicToast.show('Une erreur est survenue', 'top', false, 2500);
             });
         };

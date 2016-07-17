@@ -29,6 +29,7 @@ appContext.controller('ProfileController', function($scope , ProfileFactory, Log
 
                  $rootScope.id = $scope.user.id;
 
+
             }
         }, function(){
 
@@ -55,6 +56,7 @@ appContext.controller('ProfileController', function($scope , ProfileFactory, Log
             };
 
                 $cordovaCamera.getPicture(options).then(function (imageData) {
+                    $rootScope.userMenu.profilPhoto="data:image/jpeg;base64," + imageData;
                     $scope.user.profilPhoto = "data:image/jpeg;base64," + imageData;
                     ProfileFactory.updateUserProfil(db,$scope.user).then(function (result) {
                        console.log("ok")

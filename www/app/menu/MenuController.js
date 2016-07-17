@@ -1,4 +1,4 @@
-appContext.controller('MenuController', function($scope, $state, $ionicPlatform, LoginFactory, IncidentFactory) {
+appContext.controller('MenuController', function($scope, $state, $ionicPlatform,$rootScope, LoginFactory, IncidentFactory,LoginFactory) {
 
     // for opening db:
     var db = null;
@@ -11,6 +11,23 @@ appContext.controller('MenuController', function($scope, $state, $ionicPlatform,
         } else {// browser
             db = window.openDatabase("emergency", '1', 'desc', 1024 * 1024 * 5);
         }
+
+
+
+
+        LoginFactory.selectCredentials(db).then(function (result) {
+            console.warn(result)
+            if (result.rows.length > 0) {
+                console.log(result.rows)
+                $rootScope.userMenu = {
+                    profilPhoto: result.rows.item(0).profilPhoto
+                }
+            }
+        }, function(){
+
+        });
+
+
     });
 
 
