@@ -1,4 +1,4 @@
-appContext.controller('LoginController', function($scope, $state, $rootScope, $ionicPlatform, LoginFactory, AddFactory, ionicToast,$ionicLoading,$ionicPush,$ionicPopup){
+appContext.controller('LoginController', function($scope, $state, $rootScope, $ionicPlatform, LoginFactory, IncidentFactory,AddFactory, ionicToast,$ionicLoading,$ionicPush,$ionicPopup){
 
     // for opening db:
     var db = null;
@@ -11,6 +11,20 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
         } else {// browser
             db = window.openDatabase("emergency", '1', 'desc', 1024 * 1024 * 5);
         }
+
+        //suprimer la db
+        LoginFactory.emptyIdentifiantTable(db).then(function(result){
+          IncidentFactory.emptyIncidentTable(db).then(function(result){
+            console.log("supprimer la base de données")
+
+
+        },function(reason){
+          console.warn(reason);
+        });
+
+      },function(reason){
+        console.warn(reason);
+      });
     });
 
     $scope.signin = function(user) {
@@ -54,6 +68,7 @@ appContext.controller('LoginController', function($scope, $state, $rootScope, $i
                                                   "debug": false,
                                                   "onNotification": function(notification) {
                                                     console.warn(JSON.stringify(notification) );
+                                                    //ionicToast.show('MAJ :<br>'+notification.message, 'top', true, 5000);
                                                   },
                                                   "onRegister": function(data) {
                                                       localStorage.setItem('deviceToken', data.token);

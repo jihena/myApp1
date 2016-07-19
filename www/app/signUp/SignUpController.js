@@ -50,7 +50,7 @@ appContext.controller('SignUpController', function($scope, $state,  $ionicPlatfo
                                  console.info('table created: sign up');
                                    SignUpFactory.setCredentials(db,user.firstName, user.lastName,user.email,user.password,data.userID,"img/user.png").then(function(result){
                                       $ionicLoading.hide();
-                                       $state.go('app.profile');
+                                       $state.go('login');
                                        console.info("success");
                                    },function(reason){
                                     $ionicLoading.hide();
